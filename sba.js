@@ -100,7 +100,7 @@ for (let learnerId of ids) {
   */
 
   // need a variable to store totals.
-  let score = 0;
+  let score = 0
 
   for (let i = 0; i < LearnerSub.length; i++) {
 
@@ -109,20 +109,11 @@ for (let learnerId of ids) {
       console.log("submission score: " + LearnerSub[i].submission.score);
 
       score += LearnerSub[i].submission.score;
-      pointsPossible(ag.assignments, submissions[i].assignment_id)
 
-      // for (let j = 0; j < AssignmentGroup.assignments.length; j++) {
-
-      //   if (AssignmentGroup.assignments[j].id === LearnerSub[i].assignment_id) {
-
-      //     console.log("they Match");
-
-      //     console.log("points_possible: " + AssignmentGroup.assignments[j].points_possible)
-      //     break;
-
-      //   }
-
-      // }
+      pointsPossible(
+        AssignmentGroup.assignments,
+        LearnerSub[i].assignment_id
+      )
 
     }
 
@@ -134,21 +125,26 @@ for (let learnerId of ids) {
 
   let learnerReport = {
     id: learnerId
-  };
-
-  console.log(learnerReport);
-
-}
-function pointsPossible(assignmentsarray, assignment_id) {
-  for (let j = 0; j < AssignmentGroup.assignments.length; j++) {
-
-    if (AssignmentGroup.assignments[j].id === LearnerSub[i].assignment_id) {
-      console.log("they Match");
-      console.log("points_possible: " + AssignmentGroup.assignments[j].points_possible)
-      break;
-    }
   }
+
+  console.log(learnerReport)
+
 }
+
+function pointsPossible(assignmentsArray, assignment_id) {
+
+  for (let j = 0; j < assignmentsArray.length; j++) {
+
+    if (assignmentsArray[j].id === assignment_id) {
+console.log("they Match"); console.log("points_possible: " +assignmentsArray[j].points_possible);
+      break;
+
+    }
+
+  }
+
+}
+
 function getLearnerData(course, ag, submissions) {
 
   // here, we would process this data to achieve the desired result.
