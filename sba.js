@@ -99,8 +99,8 @@ for (let learnerId of ids) {
   }
   */
 
-  // need a variable to store totals.
-  let score = 0
+  let score = 0;
+  let totalPossible = 0;
 
   for (let i = 0; i < LearnerSub.length; i++) {
 
@@ -110,61 +110,51 @@ for (let learnerId of ids) {
 
       score += LearnerSub[i].submission.score;
 
-      pointsPossible(
+      totalPossible += getPointsPossible(
         AssignmentGroup.assignments,
         LearnerSub[i].assignment_id
-      )
+      );
 
     }
 
   }
 
   console.log("total score: " + score);
-
-  //submission [0]
+  console.log("total possible: " + totalPossible);
 
   let learnerReport = {
     id: learnerId
-  }
+  };
 
-  console.log(learnerReport)
+  console.log(learnerReport);
 
 }
 
-function pointsPossible(assignmentsArray, assignment_id) {
+function getPointsPossible(assignmentsArray, assignmentId) {
 
   for (let j = 0; j < assignmentsArray.length; j++) {
 
-    if (assignmentsArray[j].id === assignment_id) {
-console.log("they Match"); console.log("points_possible: " +assignmentsArray[j].points_possible);
-      break;
+    if (assignmentsArray[j].id === assignmentId) {
 
+      console.log("they Match");
+      console.log("points_possible: " + assignmentsArray[j].points_possible);
+
+      return assignmentsArray[j].points_possible;
     }
-
   }
 
+  return 0;
 }
 
 function getLearnerData(course, ag, submissions) {
 
-  // here, we would process this data to achieve the desired result.
-
-  // array of learner report objects
   const result = [];
-
-  // keep track of learner ids
   const ids = [];
-
-  // 1. find unique learners
-  // (figuring out how many learners there are)
 
   for (let sub of submissions) {
 
-    // check for unique learner ids
     if (ids.includes(sub.learner_id) !== true) {
-
       ids.push(sub.learner_id);
-
     }
 
   }
@@ -182,8 +172,3 @@ const result = getLearnerData(
 );
 
 console.log(result);
-
-// let learnerID1 = 125;
-// let learnerID2 = 132;
-
-// console.log(learnerID1, learnerID2)
