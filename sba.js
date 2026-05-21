@@ -24,6 +24,7 @@ const AssignmentGroup = {
       due_at: "2023-02-27",
       points_possible: 150
     },
+
     {
       id: 3,
       name: "Code the World",
@@ -43,6 +44,7 @@ const LearnerSub = [
       score: 47
     }
   },
+
   {
     learner_id: 125,
     assignment_id: 2,
@@ -51,6 +53,7 @@ const LearnerSub = [
       score: 150
     }
   },
+
   {
     learner_id: 125,
     assignment_id: 3,
@@ -59,6 +62,7 @@ const LearnerSub = [
       score: 400
     }
   },
+
   {
     learner_id: 132,
     assignment_id: 1,
@@ -67,6 +71,7 @@ const LearnerSub = [
       score: 39
     }
   },
+
   {
     learner_id: 132,
     assignment_id: 2,
@@ -77,13 +82,12 @@ const LearnerSub = [
   }
 ];
 
-
 const ids = [125, 132];
 
 // 2. create learner objects
 for (let learnerId of ids) {
-  console.log("Learner id: " +learnerId)
 
+  console.log("Learner id: " + learnerId);
 
   /*
   for(every value in submissions){
@@ -93,72 +97,76 @@ for (let learnerId of ids) {
       no:
   }       skip it
   }
-  */  
+  */
 
   // need a variable to store totals.
-  let score = 0
+  let score = 0;
 
-  for(let i = 0; i < LearnerSubmissions.length; i++){
+  for (let i = 0; i < LearnerSub.length; i++) {
 
-    if (learnerId === LearnerSubmissions[i].learner_id){
-      console.log(LearnerSubmissions[i].submission.score)
-      score += LearnerSubmissions[i].submission.score
-      console.log(ag.assignments[0].points_possible)
+    if (learnerId === LearnerSub[i].learner_id) {
+
+      console.log("submission score: "+LearnerSub[i].submission.score);
+
+      score += LearnerSub[i].submission.score;
+
+      console.log("points possible: "+AssignmentGroup.assignments[0].points_possible);
 
     }
 
   }
-  console.log("total score: " +score)
+
+  console.log("total score: " + score);
 
   //submission [0]
 
   let learnerReport = {
     id: learnerId
-  }
+  };
 
-  console.log(learnerReport)
+  console.log(learnerReport);
 
 }
 
-// function getLearnerData(course, ag, submissions) {
-// //   // here, we would process this data to achieve the desired result.
-  
+function getLearnerData(course, ag, submissions) {
 
-// array of learner report objects
-  // const result = []
+  // here, we would process this data to achieve the desired result.
 
-// keep track of learner ids
-  // const ids =[]
+  // array of learner report objects
+  const result = [];
 
-  // 1. find unique learners (figuring out hw many learners there are (and how many report objects we need))
-for (let sub of submissions){
-  //check for the learner id in the array (make sure their unique
-  if (ids.includes(sub.learner_id) !==true) {
-    ids.push(sub.learner_id); 
+  // keep track of learner ids
+  const ids = [];
+
+  // 1. find unique learners
+  // (figuring out how many learners there are)
+
+  for (let sub of submissions) {
+
+    // check for unique learner ids
+    if (ids.includes(sub.learner_id) !== true) {
+
+      ids.push(sub.learner_id);
+
+    }
+
   }
-}
-  // //     {
-// //       id: 125,
-// //       avg: 0.985, // (47 + 150) / (50 + 150)
-// //       1: 0.94, // 47 / 50
-// //       2: 1.0 // 150 / 150
-// //     },
-// //     {
-// //       id: 132,
-// //       avg: 0.82, // (39 + 125) / (50 + 150)
-// //       1: 0.78, // 39 / 50
-// //       2: 0.833 // late: (140 - 15) / 150
-// //     }
-// //   ];
+
+  console.log(ids);
 
   return result;
+
 }
 
-const result = getLearnerData(CourseInfo, AssignmentGroup, LearnerSub);
+const result = getLearnerData(
+  CourseInfo,
+  AssignmentGroup,
+  LearnerSub
+);
 
-// console.log(result);
+console.log(result);
 
-// // let learnerID1 = 125;
-// // let learnerID2 = 132;
+// let learnerID1 = 125;
+// let learnerID2 = 132;
 
-// // console.log(learnerID1, learnerID2)
+// console.log(learnerID1, learnerID2)
