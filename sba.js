@@ -116,10 +116,8 @@ for (let learnerId of ids) {
 
           console.log("they Match");
 
-          console.log(
-            "points_possible: " +
-            AssignmentGroup.assignments[j].points_possible
-          );
+          console.log("points_possible: " +AssignmentGroup.assignments[j].points_possible)
+            break;
 
         }
 
