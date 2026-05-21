@@ -109,19 +109,20 @@ for (let learnerId of ids) {
       console.log("submission score: " + LearnerSub[i].submission.score);
 
       score += LearnerSub[i].submission.score;
+      pointsPossible(ag.assignments, submissions[i].assignment_id)
 
-      for (let j = 0; j < AssignmentGroup.assignments.length; j++) {
+      // for (let j = 0; j < AssignmentGroup.assignments.length; j++) {
 
-        if (AssignmentGroup.assignments[j].id === LearnerSub[i].assignment_id) {
+      //   if (AssignmentGroup.assignments[j].id === LearnerSub[i].assignment_id) {
 
-          console.log("they Match");
+      //     console.log("they Match");
 
-          console.log("points_possible: " +AssignmentGroup.assignments[j].points_possible)
-            break;
+      //     console.log("points_possible: " + AssignmentGroup.assignments[j].points_possible)
+      //     break;
 
-        }
+      //   }
 
-      }
+      // }
 
     }
 
@@ -138,7 +139,16 @@ for (let learnerId of ids) {
   console.log(learnerReport);
 
 }
+function pointsPossible(assignmentsarray, assignment_id) {
+  for (let j = 0; j < AssignmentGroup.assignments.length; j++) {
 
+    if (AssignmentGroup.assignments[j].id === LearnerSub[i].assignment_id) {
+      console.log("they Match");
+      console.log("points_possible: " + AssignmentGroup.assignments[j].points_possible)
+      break;
+    }
+  }
+}
 function getLearnerData(course, ag, submissions) {
 
   // here, we would process this data to achieve the desired result.
