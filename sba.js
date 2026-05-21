@@ -106,11 +106,24 @@ for (let learnerId of ids) {
 
     if (learnerId === LearnerSub[i].learner_id) {
 
-      console.log("submission score: "+LearnerSub[i].submission.score);
+      console.log("submission score: " + LearnerSub[i].submission.score);
 
       score += LearnerSub[i].submission.score;
 
-      console.log("points possible: "+AssignmentGroup.assignments[0].points_possible);
+      for (let j = 0; j < AssignmentGroup.assignments.length; j++) {
+
+        if (AssignmentGroup.assignments[j].id === LearnerSub[i].assignment_id) {
+
+          console.log("they Match");
+
+          console.log(
+            "points_possible: " +
+            AssignmentGroup.assignments[j].points_possible
+          );
+
+        }
+
+      }
 
     }
 
